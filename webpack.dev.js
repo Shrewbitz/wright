@@ -7,6 +7,6 @@ module.exports = merge(common, {
     devServer: {
         contentBase: "./",
         watchContentBase: true,
-        open: "Google Chrome"
+        open: true  // my computer cant read "google chrome" chooses default browser with true
     }
 });
