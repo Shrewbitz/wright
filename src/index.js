@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem('myLanguage', ` `);
         } else {
           localStorage.setItem('myLanguage', `${langPicker}`);
-          const translate = setCORS("http://cors-anywhere.herokuapp.com/");
+          const translate = setCORS("https://cors-anywhere.herokuapp.com/");
           translate(x, { to: langPicker })
           .then(res => {
             document.getElementById("translation").innerHTML = (res.text)
