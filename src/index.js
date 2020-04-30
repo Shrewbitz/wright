@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let drag = dragElement
 
   //changes hint language
-  d3.tsv("/src/data/language.tsv").then((data) => {
+  d3.tsv("./src/data/language.tsv").then((data) => {
     let z = (data.length);
     for (let i = 0; i < z; i++) {
       let option = document.createElement("option")
@@ -62,12 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("you did it!!!!")
         document.getElementById("win").style.borderColor = "#1ef325"
         document.getElementById("correct").play()
-        
-        // setTimeout(() => {document.getElementById("win").addEventListener("click", location.reload());}, 1000);
         setTimeout(() => {location.reload()}, 3000);
-      } else { ////////
-        // console.log("not yet")
-        // console.log(count)
       }  //////////
 
     }, 500)
@@ -77,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   //picks a rando sentence
- let startUp = d3.tsv("/src/data/sentences.tsv").then((data) => {
+    d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = (data[Math.floor(Math.random() * 20000)].sentence);
     console.log(x);
     
