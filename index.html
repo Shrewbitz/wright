@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./dist/main.css" />
     <title>Document</title>
+    <script src="https://kit.fontawesome.com/0deb597c3f.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="./dist/main.js"></script>
+    <link rel="shortcut icon" type="image/png" href="./src/images/16_dk.png"/>
 </head>
 <body>
-    <h1>Wright the sentence!</h1>
+    <audio id="correct" src="./src/audio/correct.mp3"></audio>
+    <div class="logo-container">
+        <img class="logo" src="./src/images/wood_white_4.png" alt="wright logo">
+         <h1>the sentence.</h1>
+    </div>
     <div class="board-container">
         <div class="sentence-container">
-            <select id="language">
-                <!-- <option value="">Langugage</option> -->
-                <!-- languages (change value to cause error) -->
-            </select>
-            <div id="translation">Choose a language for your hint.</div>
+            <div class="select-icon">
+                <i class="fas fa-language fa-2x"></i>
+                <select id="language">
+                    
+                    <!-- <option value=""> <i class="fas fa-language"></i></option> -->
+                    <!-- languages (change value to cause error) -->
+                </select>
+            </div>
+            <div class="select-background"></div>
+            <div class="hint" id="translation">Choose a language for your hint.</div>
         </div>
         <div class="game-container" id="win">
             <progress id="progress" value="2" max="10"> </progress>
@@ -23,7 +34,12 @@
                 <!-- WORDS  -->
             </section>
         </div>
+        <div class="links">
+            <a target="_blank" href="https://github.com/Shrewbitz/wright">
+                <i class="fab fa-github"></i>
+                github
+            </a>
+        </div>
     </div>
-    <div>github</div>
 </body>
 </html>

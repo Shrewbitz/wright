@@ -1,6 +1,10 @@
 //the translation is powered by https://github.com/cjvnjde/google-translate-api-browser
 
 
+// redo algorithm to solve double words
+// make it so it doesnt reload
+// seperate files
+
 import "./styles/index.scss";
 import dragElement from './scripts/words'
 const d3 = require("d3-fetch")
@@ -42,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       for (let i = 1; i < lcheck.length; i++) {
         let left =   (lcheck[i] - lcheck[i - 1]);
-        (( left < 300) && (left > 50)) ? count += 1 : count; 
+        (( left < 300) && (left > 30)) ? count += 1 : count; 
         let height = (hcheck[i] - hcheck[i - 1]); 
         (( height < 100) && (height > -100)) ? count += 1 : count;   
       }
@@ -57,6 +61,8 @@ document.addEventListener("DOMContentLoaded", () => {
         clearInterval(interval)
         console.log("you did it!!!!")
         document.getElementById("win").style.borderColor = "#1ef325"
+        document.getElementById("correct").play()
+        
         // setTimeout(() => {document.getElementById("win").addEventListener("click", location.reload());}, 1000);
         setTimeout(() => {location.reload()}, 3000);
       } else { ////////
