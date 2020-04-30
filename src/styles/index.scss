@@ -1,11 +1,15 @@
 //Color Palette 110922
 //Color Palette 129865
 
+progress {
+    color: rgb(137, 204, 143);
+}
+
 body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Courier New', Courier, monospace;
     background-color: #eeeeee;
     margin: 0px;
 }
@@ -17,21 +21,28 @@ h1 {
 }
 
 select {
+    font-family: 'Courier New', Courier, monospace;
     position: absolute;
-    left: 18%;
+    left: 0px;
     font-weight: 500;
+    font-size: 16px;
     width: 120px;
-    height: 35px;
+    height: 41px;
     border-radius: 5px;
     margin: 5px;
     background-color: #eeeeee;
     color: #232931;
+    border: solid 3px #232931;
 }
 
 .sentence-container {
     height: 100px;
+    width: 1210px;
+    position: relative;
     display: flex;
+    justify-content: center;
     margin-top: 10px;
+    
 }
 
 .board-container {
