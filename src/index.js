@@ -65,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let left3 =  double[i - 1] < 1200 ? (lcheck[i] - lcheck[double[i - 1]]) : 0;
         if (((( left < 250) && (left > 20)) || (( left2 < 250) && (left2 > 20))) || (( left3 < 250) && (left3 > 20)))
         { count[i] += 1} 
+        // debugger
         let height = (hcheck[i] - hcheck[i - 1]); 
         (( height < 100) && (height > -100)) ? final[2] += 1 : 0; 
   
