@@ -73,7 +73,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //picks a rando sentence
     d3.tsv("./src/data/sentences.tsv").then((data) => {
-    let x = (data[Math.floor(Math.random() * 20000)].sentence);
+    let x = ""
+    do {
+      x = (data[Math.floor(Math.random() * 20000)].sentence);
+    }
+    while (x.length > 80);
     console.log(x);
     
     //makes dropdown and also changes language of hint
