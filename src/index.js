@@ -1,6 +1,6 @@
 //the translation is powered by https://github.com/cjvnjde/google-translate-api-browser
 
-
+// make sure language persists on website
 // redo algorithm to solve double words
 // make it so it doesnt reload
 // seperate files
@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       for (let i = 1; i < lcheck.length; i++) {
         let left =   (lcheck[i] - lcheck[i - 1]);
-        (( left < 300) && (left > 30)) ? count += 1 : count; 
+        (( left < 250) && (left > 20)) ? count += 1 : count; 
         let height = (hcheck[i] - hcheck[i - 1]); 
         (( height < 100) && (height > -100)) ? count += 1 : count;   
       }
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let lang = localStorage.getItem('myLanguage')
     if (lang && (lang != " ")) {
       // debugger
-      const translate = setCORS("http://cors-anywhere.herokuapp.com/");
+      const translate = setCORS("https://cors-anywhere.herokuapp.com/");
         translate(x, { to: lang })
         .then(res => {
           document.getElementById("translation").innerHTML = (res.text)
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
       for (let i = 0; i < wordArr.length; i++) {
         let word = document.createElement("div")
         word.innerHTML = wordArr[i];
-        word.style.top=`${Math.random() * 520 }px`;
+        word.style.top=`${Math.random() * 505 + 15 }px`;
         word.style.left=`${Math.random() * 1050 + 10}px`;
         document.getElementById("words").appendChild(word)
         drag(word);
