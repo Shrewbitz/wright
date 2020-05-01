@@ -26,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
       option.value = data[i].languageCode
       document.getElementById("language").appendChild(option)
     }
-    // console.log(z) 
   });
 
 
