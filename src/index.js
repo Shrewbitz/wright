@@ -2,6 +2,7 @@
 
 // I had a hand in the family deciding to move to New York.
 // Scarcely had the market opened when the fire broke out.
+//The time will come when you will be sorry for it.
 
 // make sure language persists on website
 // redo algorithm to solve double words
