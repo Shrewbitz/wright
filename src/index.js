@@ -28,36 +28,62 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let wordArr = []
   
-  // waits until promise returns sentence
+////////// test
   let demo = () => {
     //checks every half second to see if sentence is correct
     let interval = setInterval(() => {
       let section = document.getElementById("words");
       let wordCollection = section.getElementsByTagName("div");
-      let count = 0
+      let words = []
+      let double = []
+      let count = []
       let lcheck = []
+      let dubCount = 0
       let hcheck = []
       let length = wordCollection.length
+      let final = [0,0,0]
 
       for (let i = 0; i< length; i++) {
         lcheck.push(wordCollection[i].offsetLeft)
         hcheck.push(wordCollection[i].offsetTop)
+        words.push(wordCollection[i].innerHTML)
+        count.push(0)
+        double.push(1300)
       }
-
-      for (let i = 1; i < lcheck.length; i++) {
-        let left =   (lcheck[i] - lcheck[i - 1]);
-        (( left < 250) && (left > 20)) ? count += 1 : count; 
+      for (let i = 1; i < length; i++) {
+        for (let j = 0; j < length; j++) {
+          if ((words[i] === words[j]) && (i != j)) {
+            double[i] = j
+            double[j] = i
+            dubCount += 1
+          }
+        }        
+        
+        //checks position
+        let left = (lcheck[i] - lcheck[i - 1]);
+        let left2  = double[i] < 1200 ? (lcheck[i] - lcheck[double[i] - 1]) : 0;
+        let left3 =  double[i - 1] < 1200 ? (lcheck[i] - lcheck[double[i - 1]]) : 0;
+        if (((( left < 250) && (left > 20)) || (( left2 < 250) && (left2 > 20))) || (( left3 < 250) && (left3 > 20)))
+        { count[i] += 1} 
         let height = (hcheck[i] - hcheck[i - 1]); 
-        (( height < 100) && (height > -100)) ? count += 1 : count;   
+        (( height < 100) && (height > -100)) ? final[2] += 1 : 0; 
+  
+      }
+      for (let i = 1; i < length; i++) {
+        if (count[i] >= 1) {
+          final[0] += 1
+        }
+        if (count[i] >1) {
+          final[1] += 1
+        }  
       }
 
-      //makes progress bar fill up
+      // makes progress bar fill up
       let progress = document.getElementById("progress");
       progress.max = (length - 1)*2
-      progress.value = count
-
+      progress.value = final[0] + final[2]
       //win condition
-      if (count === (length - 1)*2) {
+      if (((final[0] === (length - 1)) && (final[1] <= (dubCount/2))) && (final[2] === (length - 1))) {
         clearInterval(interval)
         console.log("you did it!!!!")
         document.getElementById("win").style.borderColor = "#1ef325"
@@ -68,13 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500)
 
   }
-  setTimeout(demo, 1000);
+  setTimeout(demo, 5000);
+  /////////////
 
 
   //picks a rando sentence
     d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = ""
     do {
+      // x = "I have to go to the store."
       x = (data[Math.floor(Math.random() * 20000)].sentence);
     }
     while (x.length > 80);
