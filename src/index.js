@@ -1,5 +1,8 @@
 //the translation is powered by https://github.com/cjvnjde/google-translate-api-browser
 
+// I had a hand in the family deciding to move to New York.
+// Scarcely had the market opened when the fire broke out.
+
 // make sure language persists on website
 // redo algorithm to solve double words
 // make it so it doesnt reload
@@ -103,8 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = ""
     do {
-      // x = "I have to go to the store."
-      x = (data[Math.floor(Math.random() * 20000)].sentence);
+      x = "You never know what you can do till you try."
+      // x = (data[Math.floor(Math.random() * 20000)].sentence);
     }
     while (x.length > 80);
     console.log(x);
