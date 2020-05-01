@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = ""
     do {
-      x = "You never know what you can do till you try."
-      // x = (data[Math.floor(Math.random() * 20000)].sentence);
+      // x = "You never know what you can do till you try."
+      x = (data[Math.floor(Math.random() * 20000)].sentence);
     }
     while (x.length > 80);
     console.log(x);
