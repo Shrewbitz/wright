@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-
   let wordArr = []
   
 ////////// test
@@ -116,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
     
     let lang = localStorage.getItem('myLanguage')
     if (lang && (lang != " ")) {
-      // debugger
       const translate = setCORS("https://cors-anywhere.herokuapp.com/");
         translate(x, { to: lang })
         .then(res => {
