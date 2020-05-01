@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 500)
 
   }
-  setTimeout(demo, 5000);
+  setTimeout(demo, 1000);
   /////////////
 
 
