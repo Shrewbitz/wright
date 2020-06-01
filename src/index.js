@@ -83,8 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // makes progress bar fill up
       let progress = document.getElementById("progress");
-      progress.max = (length - 1)*2
-      progress.value = final[0] + final[2]
+      // progress.max = (length - 1)*2
+      // progress.value = final[0] + final[2]
+      progress.style.width = `${((final[0] + final[2]) / ((length - 1)*2) * 300)}px`
+
+
+
       //win condition
       if (((final[0] === (length - 1)) && (final[1] <= (dubCount/2))) && (final[2] === (length - 1))) {
         clearInterval(interval)
