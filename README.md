@@ -1,3 +1,3 @@
-##Wright
+## Wright
 
 ![](./src/images/wright.gif)
