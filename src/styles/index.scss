@@ -53,7 +53,7 @@ h1 {
 .select-icon {
     position: absolute;
     left: 0px;
-    color: #eeeeee;
+    color: #393e46;
     top: 0px;
     font-size: 27px;
     margin-top: 0px;
@@ -61,30 +61,33 @@ h1 {
 }
 
 
+
 select {
     font-family: 'Courier New', Courier, monospace;
     position: absolute;
-    left: 65px;
-    top: 5px;
+    left: -10px;
+    top: 2px;
     font-weight: 500;
     font-size: 18px;
-    width: 120px;
-    height: 34px;
+    padding-left: 76px;
+    width: 196px;
+    height: 41px;
     border-radius: 3px;
     margin: 5px;
     border: none;
     z-index: 3;
-    background-color: #eeeeee;
+    background-color: transparent;
     color: #232931;
     outline: none;
     transition: background-color 0.5s ease;
-    box-shadow: #232931 1px 1px 5px 0px;
+    
 }
+
 
 select:hover {
     cursor: pointer;
     transition: background-color 0.5s ease;
-    background-color: white;
+    background-color: transparent;
 }
 
 .select-background {
@@ -93,16 +96,21 @@ select:hover {
     position: absolute;
     width: 196px;
     height: 41px;
-    background-color: #232931;
+    background-color: #eeeeee;
     z-index: 2;
     border-radius: 5px;
+    box-shadow: #232931 2px 2px 10px 1px;
 }
 
 
-option {
+
+.option {
     background-color: #eeeeee;
     color: #232931;
+    padding-left: 0px;
 }
+
+
 
 
 .hint {

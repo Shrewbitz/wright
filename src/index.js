@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let option = document.createElement("option")
       option.innerHTML = data[i].languageName;
       option.value = data[i].languageCode
+      option.className = "option"
       document.getElementById("language").appendChild(option)
     }
   });
@@ -65,11 +66,11 @@ document.addEventListener("DOMContentLoaded", () => {
         let left = (lcheck[i] - lcheck[i - 1]);
         let left2  = double[i] < 1200 ? (lcheck[i] - lcheck[double[i] - 1]) : 0;
         let left3 =  double[i - 1] < 1200 ? (lcheck[i] - lcheck[double[i - 1]]) : 0;
-        if (((( left < 250) && (left > 20)) || (( left2 < 250) && (left2 > 20))) || (( left3 < 250) && (left3 > 20)))
+        if (((( left < 200) && (left > 20)) || (( left2 < 200) && (left2 > 20))) || (( left3 < 200) && (left3 > 20)))
         { count[i] += 1} 
         // debugger
         let height = (hcheck[i] - hcheck[i - 1]); 
-        (( height < 100) && (height > -100)) ? final[2] += 1 : 0; 
+        (( height < 50) && (height > -50)) ? final[2] += 1 : 0; 
   
       }
       for (let i = 1; i < length; i++) {
@@ -109,11 +110,10 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = ""
     do {
-      // x = "You never know what you can do till you try."
       x = (data[Math.floor(Math.random() * 20000)].sentence);
     }
     while (x.length > 80);
-    console.log(x);
+    // console.log(x);
     
     //makes dropdown and also changes language of hint
     
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         translate(x, { to: lang })
         .then(res => {
           document.getElementById("translation").innerHTML = (res.text)
-          console.log(res.text)
+          // console.log(res.text)
         })
         .catch(err => {
           console.error(err);
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
           translate(x, { to: langPicker })
           .then(res => {
             document.getElementById("translation").innerHTML = (res.text)
-            console.log(res.text)
+            // console.log(res.text)
           })
           .catch(err => {
             console.error(err);
