@@ -25,3 +25,31 @@ The top of the screen will have a dropdown menu that lets you select what langua
 
 I have a list of 1.3 million English sentences in a .tsv file from taboeta. I cut down to 20000 of these and use D3 to fetch a sentence on a page load. I then send the sentence through google's translate api. The sentence string is split and rendered on the screen using javascript. There is a check to make sure each word is vertically and horizontally in the correct position and that duplicate words can be placed interchangably. When that check is complete a new sentence will be fetched from the tsv file and new words will be rendered.
 
+# Highlighted Feature
+
+# Implementation Timeline
+
+### Day 1: 
+- build a skeleton
+- connect with the database and translate api. 
+
+### Day 2: 
+- make a div that is draggable.
+- build logic to check that div is left of a second div.
+
+### Day 3: 
+- make divs based on the length of the sentence. 
+- assign a word to each div.
+- build a sentence correct check.
+
+### Day 4:
+- add translated sentence to the page.
+- add language options.
+- add progress bar.
+
+# Bonus Features
+- have google translate read the sentence out loud after the user finishes the sentence.
+- have a timer
+- have a score system
+- let users choose the difficulty
+- add more languages to the database so users can practice other languages.
