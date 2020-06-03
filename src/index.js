@@ -32,11 +32,43 @@ document.addEventListener("DOMContentLoaded", () => {
   let wordArr = []
   
 ////////// test
+// sortByPoints(player1, player2) {
+//   return Math.sign(player2.points - player1.points);
+// }
+
+// const playersArray = Object.values(this.props.gameState.players).sort(
+//   this.sortByPoints
+// );
+  
+
+
+
   let demo = () => {
+    let section = document.getElementById("words");
+    let wordCollection = section.getElementsByTagName("div");
+    let c = Array.from(wordCollection)
+    let wright = ""
+    for (let i = 0; i < c.length; i++) {
+      wright += (c[i].innerHTML + " ")
+    }
+    wright = wright.slice(0, wright.length-1) 
+    // this.wright = this.wright.bind(this)
     //checks every half second to see if sentence is correct
-    let interval = setInterval(() => {
+    let interval = setInterval((wright) => {
+      console.log(wright)
       let section = document.getElementById("words");
       let wordCollection = section.getElementsByTagName("div");
+      let y = Array.from(wordCollection)
+      let currentLayout = y.sort((one, two) => Math.sign(one.offsetLeft - two.offsetLeft))
+      // let k = 
+      
+      let sentence = ""
+      for (let i = 0; i < currentLayout.length; i++) {
+        sentence += (currentLayout[i].innerHTML + " ")
+      }
+      sentence = sentence.slice(0, sentence.length-1)
+       
+      debugger
       let words = []
       let double = []
       let count = []
@@ -110,6 +142,8 @@ document.addEventListener("DOMContentLoaded", () => {
     d3.tsv("./src/data/sentences.tsv").then((data) => {
     let x = ""
     do {
+
+      // x = "You never know what you can do till you try.
       x = (data[Math.floor(Math.random() * 20000)].sentence);
     }
     while (x.length > 80);
