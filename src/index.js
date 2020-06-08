@@ -1,14 +1,10 @@
 //the translation is powered by https://github.com/cjvnjde/google-translate-api-browser
 
-
-
-// make it so it doesnt reload
-// seperate files
-
 import "./styles/index.scss";
 import dragElement from './scripts/words'
 const d3 = require("d3-fetch")
 import { setCORS } from "google-translate-api-browser";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   let drag = dragElement
@@ -20,131 +16,105 @@ document.addEventListener("DOMContentLoaded", () => {
       let option = document.createElement("option")
       option.innerHTML = data[i].languageName;
       option.value = data[i].languageCode
+      option.className = "option"
       document.getElementById("language").appendChild(option)
+    }
+
+    // debugger
+    if  (localStorage.getItem('myLanguage')) {
+      document.getElementById("language").value = localStorage.getItem('myLanguage')
     }
   });
 
   let wordArr = []
-  
-////////// test
+
   let demo = () => {
     //checks every half second to see if sentence is correct
     let interval = setInterval(() => {
-      let section = document.getElementById("words");
-      let wordCollection = section.getElementsByTagName("div");
-      let words = []
-      let double = []
-      let count = []
-      let lcheck = []
-      let dubCount = 0
-      let hcheck = []
-      let length = wordCollection.length
-      let final = [0,0,0]
+      let wordCollection = document.getElementById("words").getElementsByTagName("div");
+      let correctLayout = Array.from(wordCollection)
+      let currentLayout =  Array.from(wordCollection).sort((one, two) => Math.sign(one.offsetLeft - two.offsetLeft))
+      
+      // checks order, height, and spacing.
+      let finalCheck = 0
+      let perfectCheck = currentLayout.length * 3 - 3
 
-      for (let i = 0; i< length; i++) {
-        lcheck.push(wordCollection[i].offsetLeft)
-        hcheck.push(wordCollection[i].offsetTop)
-        words.push(wordCollection[i].innerHTML)
-        count.push(0)
-        double.push(1300)
-      }
-      for (let i = 1; i < length; i++) {
-        for (let j = 0; j < length; j++) {
-          if ((words[i] === words[j]) && (i != j)) {
-            double[i] = j
-            double[j] = i
-            dubCount += 1
-          }
-        }        
-        
-        //checks position
-        let left = (lcheck[i] - lcheck[i - 1]);
-        let left2  = double[i] < 1200 ? (lcheck[i] - lcheck[double[i] - 1]) : 0;
-        let left3 =  double[i - 1] < 1200 ? (lcheck[i] - lcheck[double[i - 1]]) : 0;
-        if (((( left < 250) && (left > 20)) || (( left2 < 250) && (left2 > 20))) || (( left3 < 250) && (left3 > 20)))
-        { count[i] += 1} 
-        // debugger
-        let height = (hcheck[i] - hcheck[i - 1]); 
-        (( height < 100) && (height > -100)) ? final[2] += 1 : 0; 
-  
-      }
-      for (let i = 1; i < length; i++) {
-        if (count[i] >= 1) {
-          final[0] += 1
+      for (let i = 1; i < currentLayout.length; i++) {
+        if (correctLayout[i].innerHTML === (currentLayout[i].innerHTML)) {
+          finalCheck += 1
         }
-        if (count[i] >1) {
-          final[1] += 1
-        }  
+        let height = Math.abs(currentLayout[i - 1].offsetTop - currentLayout[i].offsetTop)
+        if (height < 50) {
+          finalCheck += 1
+        }
+        let left = Math.abs(currentLayout[i - 1].offsetLeft - currentLayout[i].offsetLeft)
+        if (left < 200 && left > 20) {
+          finalCheck += 1 
+        }
       }
 
       // makes progress bar fill up
-      let progress = document.getElementById("progress");
-      progress.max = (length - 1)*2
-      progress.value = final[0] + final[2]
+      document.getElementById("progress").style.width = `${(finalCheck) / (perfectCheck) * 300}px`;
+
       //win condition
-      if (((final[0] === (length - 1)) && (final[1] <= (dubCount/2))) && (final[2] === (length - 1))) {
+      if (finalCheck === perfectCheck ) {
         clearInterval(interval)
-        console.log("you did it!!!!")
         document.getElementById("win").style.borderColor = "#1ef325"
         document.getElementById("correct").play()
         setTimeout(() => {location.reload()}, 3000);
       }  //////////
-
     }, 500)
-
   }
-  setTimeout(demo, 1000);
-  /////////////
 
 
   //picks a rando sentence
     d3.tsv("./src/data/sentences.tsv").then((data) => {
-    let x = ""
-    do {
-      // x = "You never know what you can do till you try."
-      x = (data[Math.floor(Math.random() * 20000)].sentence);
-    }
-    while (x.length > 80);
-    console.log(x);
-    
-    //makes dropdown and also changes language of hint
-    
-    let lang = localStorage.getItem('myLanguage')
-    if (lang && (lang != " ")) {
-      const translate = setCORS("https://cors-anywhere.herokuapp.com/");
-        translate(x, { to: lang })
-        .then(res => {
-          document.getElementById("translation").innerHTML = (res.text)
-          console.log(res.text)
-        })
-        .catch(err => {
-          console.error(err);
-        });
-    } 
-    //lets user change language
-    document.getElementById("language").addEventListener('change',
-      (event) => {
-        let langPicker = event.target.value;
-        //lets you change back to no hint
-        if (langPicker === ' ') {
-          document.getElementById("translation").innerHTML = ("Choose a language for your hint.")
-          localStorage.setItem('myLanguage', ` `);
-        } else {
-          localStorage.setItem('myLanguage', `${langPicker}`);
-          const translate = setCORS("https://cors-anywhere.herokuapp.com/");
-          translate(x, { to: langPicker })
+      let x = ""
+      do {
+        // x = "cheese cheese cheese cheese.";
+        x = (data[Math.floor(Math.random() * 20000)].sentence);
+      }
+      while (x.length > 80);
+      // console.log(x);
+      
+      //makes dropdown and also changes language of hint
+      let lang = localStorage.getItem('myLanguage')
+
+      if (lang && (lang != " ")) {
+        const translate = setCORS("https://cors-anywhere.herokuapp.com/");
+          translate(x, { to: lang })
           .then(res => {
             document.getElementById("translation").innerHTML = (res.text)
-            console.log(res.text)
+            // console.log(res.text)
           })
           .catch(err => {
             console.error(err);
           });
-        } 
-      }
-    );
-        
-      // places words
+      } 
+      //lets user change language
+      document.getElementById("language").addEventListener('change',
+        (event) => {
+          let langPicker = event.target.value;
+          //lets you change back to no hint
+          if (langPicker === ' ') {
+            document.getElementById("translation").innerHTML = ("Choose a language for your hint.")
+            localStorage.setItem('myLanguage', ` `);
+          } else {
+            localStorage.setItem('myLanguage', `${langPicker}`);
+            const translate = setCORS("https://cors-anywhere.herokuapp.com/");
+            translate(x, { to: langPicker })
+            .then(res => {
+              document.getElementById("translation").innerHTML = (res.text)
+              // console.log(res.text)
+            })
+            .catch(err => {
+              console.error(err);
+            });
+          } 
+        }
+      );
+          
+        // places words
       wordArr = x.split(" ")
       for (let i = 0; i < wordArr.length; i++) {
         let word = document.createElement("div")
@@ -154,8 +124,5 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("words").appendChild(word)
         drag(word);
       }
-  });
-
-
-
+    }).then(demo);
 });
