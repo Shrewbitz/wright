@@ -17,6 +17,7 @@
   "author": "Shrewbitz",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/translate": "^6.0.0",
     "d3-fetch": "^1.1.2",
     "google-translate-api-browser": "^1.1.71"
   },

@@ -1,18 +1,10 @@
 //the translation is powered by https://github.com/cjvnjde/google-translate-api-browser
 
-// I had a hand in the family deciding to move to New York.
-// Scarcely had the market opened when the fire broke out.
-//The time will come when you will be sorry for it.
-
-// make sure language persists on website
-// redo algorithm to solve double words
-// make it so it doesnt reload
-// seperate files
-
 import "./styles/index.scss";
 import dragElement from './scripts/words'
 const d3 = require("d3-fetch")
 import { setCORS } from "google-translate-api-browser";
+
 
 document.addEventListener("DOMContentLoaded", () => {
   let drag = dragElement
@@ -87,6 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       //makes dropdown and also changes language of hint
       let lang = localStorage.getItem('myLanguage')
+
       if (lang && (lang != " ")) {
         const translate = setCORS("https://cors-anywhere.herokuapp.com/");
           translate(x, { to: lang })
