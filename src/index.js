@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // makes progress bar fill up
-      document.getElementById("progress").style.width = `${(finalCheck) / (perfectCheck) * 300}px`;
+      document.getElementById("progres").style.width = `${(finalCheck) / (perfectCheck) * 300}px`;
 
       //win condition
       if (finalCheck === perfectCheck ) {
