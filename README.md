@@ -33,7 +33,9 @@ I have a list of 1.3 million English sentences in a .tsv file from taboeta. I wi
     let interval = setInterval(() => {
       let wordCollection = document.getElementById("words").getElementsByTagName("div");
       let correctLayout = Array.from(wordCollection)
-      let currentLayout =  Array.from(wordCollection).sort((one, two) => Math.sign(one.offsetLeft - two.offsetLeft))
+      let currentLayout =  Array.from(wordCollection).sort(
+         (one, two) => Math.sign(one.offsetLeft - two.offsetLeft)
+      )
       
       // checks order, height, and spacing.
       let finalCheck = 0
