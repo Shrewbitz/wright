@@ -17,7 +17,7 @@ Wright is a web app that lets people study English and eventually other language
 
 # Wireframes
 
-wireframe.png
+![](wireframe.png)
 
 The top of the screen will have a dropdown menu that lets you select what language you want the imported sentence to be translated to. Below will be a container that contains the randomly distributed words. This is all that is needed for the mvp. Other possible features would be a progress bar, to add a time limit, a score, and how many sentences you have built in the session. 
 
