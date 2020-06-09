@@ -4,7 +4,7 @@
 
 # Background
 
-Wright is a web app that lets people study English and eventually other languages by creating sentences out of a given set of words. The premise being that this will help users learn new words and sentence structure. A translated version of the sentence will appear for guidance.  When the words are arranged in the correct order of the sentence a new sentence puzzle will load. 
+Wright is a web app that lets people study English and eventually other languages by creating sentences out of a given set of words. The premise being that this will help users learn new words and sentence structure. Users can get a translated version of the sentence to appear for guidance. When the words are arranged in the correct order of the sentence a new sentence puzzle will load. 
 
 # Functionality & MVP
 
@@ -25,7 +25,7 @@ look at wireframe.png for reference.
 
 # Architecture and Technologies
 
-I have a list of 1.3 million English sentences in a .tsv file from taboeta. I will put these in a database and fetch a sentence on a page load. I then plan to send the sentence through google's translate api. The sentence string will be split and be rendered on the screen using javascript. There will also be a check to make sure each word is left of the word after it. When that check is complete a new sentence will be fetched from the database and new words will be rendered.
+I have a list of 1.3 million English sentences in a .tsv file from taboeta. I filtered down to 20,000 sentence. I put these in a database and fetch a sentence on a page load. I then send the sentence through google's translate api. The sentence string will is split and be rendered on the screen using javascript. Then it is checked to make sure each word is in the correct position. When that check is complete a new sentence will be fetched from the database and the new words will be rendered.
 
 # Highlighted Feature
 
