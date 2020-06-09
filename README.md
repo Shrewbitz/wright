@@ -21,8 +21,6 @@ Wright is a web app that lets people study English and eventually other language
 
 The top of the screen will have a dropdown menu that lets you select what language you want the imported sentence to be translated to. Below will be a container that contains the randomly distributed words. This is all that is needed for the mvp. Other possible features would be a progress bar, to add a time limit, a score, and how many sentences you have built in the session. 
 
-look at wireframe.png for reference.
-
 # Architecture and Technologies
 
 I have a list of 1.3 million English sentences in a .tsv file from taboeta. I filtered down to 20,000 sentence. I put these in a database and fetch a sentence on a page load. I then send the sentence through google's translate api. The sentence string will is split and be rendered on the screen using javascript. Then it is checked to make sure each word is in the correct position. When that check is complete a new sentence will be fetched from the database and the new words will be rendered.
