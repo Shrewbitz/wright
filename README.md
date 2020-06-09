@@ -27,6 +27,45 @@ look at wireframe.png for reference.
 
 I have a list of 1.3 million English sentences in a .tsv file from taboeta. I will put these in a database and fetch a sentence on a page load. I then plan to send the sentence through google's translate api. The sentence string will be split and be rendered on the screen using javascript. There will also be a check to make sure each word is left of the word after it. When that check is complete a new sentence will be fetched from the database and new words will be rendered.
 
+```   let demo = () => {
+    //checks every half second to see if sentence is correct
+    let interval = setInterval(() => {
+      let wordCollection = document.getElementById("words").getElementsByTagName("div");
+      let correctLayout = Array.from(wordCollection)
+      let currentLayout =  Array.from(wordCollection).sort((one, two) => Math.sign(one.offsetLeft - two.offsetLeft))
+      
+      // checks order, height, and spacing.
+      let finalCheck = 0
+      let perfectCheck = currentLayout.length * 3 - 3
+
+      for (let i = 1; i < currentLayout.length; i++) {
+        if (correctLayout[i].innerHTML === (currentLayout[i].innerHTML)) {
+          finalCheck += 1
+        }
+        let height = Math.abs(currentLayout[i - 1].offsetTop - currentLayout[i].offsetTop)
+        if (height < 50) {
+          finalCheck += 1
+        }
+        let left = Math.abs(currentLayout[i - 1].offsetLeft - currentLayout[i].offsetLeft)
+        if (left < 200 && left > 20) {
+          finalCheck += 1 
+        }
+      }
+
+      // makes progress bar fill up
+      document.getElementById("progress").style.width = `${(finalCheck) / (perfectCheck) * 300}px`;
+
+      //win condition
+      if (finalCheck === perfectCheck ) {
+        clearInterval(interval)
+        document.getElementById("win").style.borderColor = "#1ef325"
+        document.getElementById("correct").play()
+        setTimeout(() => {location.reload()}, 3000);
+      }  //////////
+    }, 500)
+  }
+```
+
 # Implementation Timeline
 
 ### Day 1: 
