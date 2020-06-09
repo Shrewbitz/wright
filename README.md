@@ -27,7 +27,8 @@ look at wireframe.png for reference.
 
 I have a list of 1.3 million English sentences in a .tsv file from taboeta. I will put these in a database and fetch a sentence on a page load. I then plan to send the sentence through google's translate api. The sentence string will be split and be rendered on the screen using javascript. There will also be a check to make sure each word is left of the word after it. When that check is complete a new sentence will be fetched from the database and new words will be rendered.
 
-```   let demo = () => {
+```js
+   let demo = () => {
     //checks every half second to see if sentence is correct
     let interval = setInterval(() => {
       let wordCollection = document.getElementById("words").getElementsByTagName("div");
